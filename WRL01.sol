@@ -1,6 +1,7 @@
 pragma solidity ^0.4.11;
 
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
+import "zeppelin-solidity/contracts/token/StandardToken.sol";
 
 /**
  * @title WRL01 Token
@@ -42,8 +43,12 @@ contract WRL01 is Ownable {
     released = true;
   }
 
+
+  function approve(address _to, uint _value) returns (bool ok) {
+    return super.approve(_to, _value);
+  }
+
   function transfer(address _to, uint _value) canTransfer(msg.sender) returns (bool success) {
-    // Call Burnable.transfer()
     return super.transfer(_to, _value);
   }
 
